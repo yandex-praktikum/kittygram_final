@@ -1,10 +1,13 @@
 from http import HTTPStatus
+from pathlib import Path
 
 import requests
 
 
-def _get_dockerhub_username(deploy_file_info, deploy_info_file_content,
-                            dockerhub_username_key) -> str:
+def _get_dockerhub_username(
+        deploy_file_info: tuple[Path, str],
+        deploy_info_file_content: dict[str, str],
+        dockerhub_username_key) -> str:
     _, relative_path = deploy_file_info
     assert dockerhub_username_key in deploy_info_file_content, (
         f'Убедитесь, что файл `{relative_path}` содержит ключ '
@@ -13,8 +16,11 @@ def _get_dockerhub_username(deploy_file_info, deploy_info_file_content,
     return deploy_info_file_content[dockerhub_username_key]
 
 
-def test_dockerhub_images_exist(deploy_file_info, deploy_info_file_content,
-                                dockerhub_username_key):
+def test_dockerhub_images_exist(
+        deploy_file_info: tuple[Path, str],
+        deploy_info_file_content: dict[str, str],
+        dockerhub_username_key: str
+        ) -> None:
     common_part_of_link_to_docker_hub = (
         'https://hub.docker.com/v2/namespaces/{username}/repositories/{image}/'
     )
