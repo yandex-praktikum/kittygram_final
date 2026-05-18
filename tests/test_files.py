@@ -126,3 +126,20 @@ def test_docker_compose_prod_file_exists(base_dir: Path,
         f'Убедитесь, что файл `{docker_compose_prod_file_name}` не содержит '
         'инструкции `build`.'
     )
+
+
+def test_vm_name(deploy_file_info: tuple[Path, str],
+                 deploy_info_file_content: dict[str, str]):
+    _, relative_path = deploy_file_info
+    vm_name_key = 'vm_name'
+    assert vm_name_key in deploy_info_file_content, (
+        f'Убедитесь, что файл `{relative_path}` содержит ключ '
+        f'`{vm_name_key}`.'
+    )
+
+    vm_name = deploy_info_file_content[vm_name_key]
+    assert vm_name.startswith('r-backend-vm'), (
+        f'Убедитесь, что в ключе `{vm_name_key}` файла `{relative_path}` '
+        'указано имя виртуальной машины. Имя должно начинаться с '
+        '`r-backend-vm`.'
+    )

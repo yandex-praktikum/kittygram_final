@@ -13,6 +13,7 @@ KITTYGRAM_DOMAIN_KEY = 'kittygram_domain'
 TASKI_DOMAIN_KEY = 'taski_domain'
 DOCKERFILE_NAME = 'Dockerfile'
 DOCKERHUB_USERNAME_KEY = 'dockerhub_username'
+VM_NAME_KEY = 'vm_name'
 WORKFLOW_FILE = 'kittygram_workflow.yml'
 DOCKER_COMPOSE_PROD_FILE_NAME = 'docker-compose.production.yml'
 
@@ -105,6 +106,7 @@ def expected_deploy_info_file_content() -> dict[str, str]:
         TASKI_DOMAIN_KEY: 'ссылка для доступа к проекту `Taski`',
         KITTYGRAM_DOMAIN_KEY: 'ссылка для доступа к проекту Kittygram',
         'dockerhub_username': 'ваше имя пользователя на Docker Hub',
+        VM_NAME_KEY: 'имя виртуальной машины',
     }
 
 
